@@ -28,7 +28,7 @@
         </thead>
     </table>
     <div id="tb" style="padding:3px">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="AddAction()" >Add Action</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton btn-toggle" iconCls="icon-add" plain="true" onclick="AddAction()" >Add Action</a>
        
         <div style="float: right;margin-right: 20px;">
             <span>Search:</span>
@@ -84,7 +84,15 @@
             $('#dg').datagrid({
                 url:'get_index.php',
                 toolbar: '#tb',
-                pagination:'true'
+                pagination:'true',
+                  onBeforeLoad: function(){
+                    $('.btn-toggle').linkbutton('disable')
+                },
+                onClickRow: function(index,row){
+                    // alert('Anda klik baris index: ' + index);
+                    // alert(JSON.stringify(row));
+                    $('.btn-toggle').linkbutton('enable')
+                }
                 
             });
 
@@ -138,10 +146,13 @@
 
 
                 if (row.id==null){
+                    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Data Baru');               
+                    $('#ff').form('clear');
                      url = 'save_index.php';
                     
                 }
                 else{
+                    $('#dlg').dialog('open').dialog('center').dialog('setTitle','Perubahan Data'); 
                    url = 'update_index.php?id='+row.id;
                 }
 
