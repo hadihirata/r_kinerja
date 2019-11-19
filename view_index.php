@@ -91,6 +91,7 @@
             
         });
 
+
         function doSearch(){
             $('#dg').datagrid('load',{
                 searchid: $('#searchid').val()               
@@ -103,7 +104,7 @@
             
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit');               
                 $('#ff').form('clear');
-                /*$('#pg').combobox({
+                $('#pg').combobox({
 
                         url:'cb_pegawai.php?id='+row.pegawai_id,
                         valueField:'id',
@@ -112,27 +113,29 @@
                             return '<b>'+row.nip_baru+'</b><br> '+row.nama_lengkap+'</span>';
                         }
 
-                    });*/
+                    });
 
                  $('#jb').combobox({
 
-                        url:'cb_jabatan.php'+row.jabatan_id,
+                        url:'cb_jabatan.php?id='+row.jabatan_id,
                         valueField:'id',
                         textField:'nama_jabatan',
                         formatter:function(row){                   
                            return '<b>'+row.kode_jabatan+'</b><br> '+row.nama_jabatan+'</span>';
                         }
                     });
-                 /*
+
                     $('#uk').combobox({
 
-                        url:'cb_struktural.php'+row.unit_kerja_id,
+                        url:'cb_struktural.php?id='+row.unit_kerja_id,
                         valueField:'id',
                         textField:'unit_kerja',
                         formatter:function(row){                   
                            return '<b>'+row.kode+'</b><br> '+row.unit_kerja+'</span>';
                         }
-                    });*/
+                    });
+
+
 
                 if (row.id==null){
                      url = 'save_index.php';
@@ -141,8 +144,9 @@
                 else{
                    url = 'update_index.php?id='+row.id;
                 }
+
                  
-           //alert(url);
+           //alert(row.jabatan_id);
 
         }
 
