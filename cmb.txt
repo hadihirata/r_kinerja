@@ -1,0 +1,29 @@
+$('#pg').combobox({
+
+                url:'cb_pegawai.php',
+                valueField:'id',
+                textField:'nama_lengkap',
+                formatter:function(row){                   
+                    return '<b>'+row.nip_baru+'</b><br> '+row.nama_lengkap+'</span>';
+                }
+            });
+
+            $('#jb').combobox({
+
+                url:'cb_jabatan.php',
+                valueField:'id',
+                textField:'nama_jabatan',
+                formatter:function(row){                   
+                   return '<b>'+row.kode_jabatan+'</b><br> '+row.nama_jabatan+'</span>';
+                }
+            });
+
+            $('#uk').combobox({
+
+                url:'cb_struktural.php',
+                valueField:'id',
+                textField:'unit_kerja',
+                formatter:function(row){                   
+                   return '<b>'+row.kode+'</b><br> '+row.unit_kerja+'</span>';
+                }
+            });

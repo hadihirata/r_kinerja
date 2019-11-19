@@ -88,35 +88,7 @@
                 
             });
 
-            $('#pg').combobox({
-
-                url:'cb_pegawai.php',
-                valueField:'id',
-                textField:'nama_lengkap',
-                formatter:function(row){                   
-                    return '<b>'+row.nip_baru+'</b><br> '+row.nama_lengkap+'</span>';
-                }
-            });
-
-            $('#jb').combobox({
-
-                url:'cb_jabatan.php',
-                valueField:'id',
-                textField:'nama_jabatan',
-                formatter:function(row){                   
-                   return '<b>'+row.kode_jabatan+'</b><br> '+row.nama_jabatan+'</span>';
-                }
-            });
-
-            $('#uk').combobox({
-
-                url:'cb_struktural.php',
-                valueField:'id',
-                textField:'unit_kerja',
-                formatter:function(row){                   
-                   return '<b>'+row.kode+'</b><br> '+row.unit_kerja+'</span>';
-                }
-            });
+            
         });
 
         function doSearch(){
@@ -128,16 +100,49 @@
         function AddAction(){           
             var row = $('#dg').datagrid('getSelected');
             
-            if (row.id==null){
-               $('#dlg').dialog('open').dialog('center').dialog('setTitle','New');
+            
+                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit');               
                 $('#ff').form('clear');
-                url = 'save_index.php';
-            }
-            else{
-                $('#dlg').dialog('open').dialog('center').dialog('setTitle','Edit');
-                $('#ff').form('load',row);
-                url = 'update_index.php?id='+row.id;
-            }
+                /*$('#pg').combobox({
+
+                        url:'cb_pegawai.php?id='+row.pegawai_id,
+                        valueField:'id',
+                        textField:'nama_lengkap',
+                        formatter:function(row){                   
+                            return '<b>'+row.nip_baru+'</b><br> '+row.nama_lengkap+'</span>';
+                        }
+
+                    });*/
+
+                 $('#jb').combobox({
+
+                        url:'cb_jabatan.php'+row.jabatan_id,
+                        valueField:'id',
+                        textField:'nama_jabatan',
+                        formatter:function(row){                   
+                           return '<b>'+row.kode_jabatan+'</b><br> '+row.nama_jabatan+'</span>';
+                        }
+                    });
+                 /*
+                    $('#uk').combobox({
+
+                        url:'cb_struktural.php'+row.unit_kerja_id,
+                        valueField:'id',
+                        textField:'unit_kerja',
+                        formatter:function(row){                   
+                           return '<b>'+row.kode+'</b><br> '+row.unit_kerja+'</span>';
+                        }
+                    });*/
+
+                if (row.id==null){
+                     url = 'save_index.php';
+                    
+                }
+                else{
+                   url = 'update_index.php?id='+row.id;
+                }
+                 
+           //alert(url);
 
         }
 
